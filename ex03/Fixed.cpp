@@ -144,21 +144,21 @@ static Fixed& min(Fixed &a, Fixed &b)
 }
 static const Fixed& min(const Fixed &a, const Fixed &b)
 {
-    if (&a < &b)
+    if (a < b)
         return a;
     else
         return b;
 }
 static Fixed& max(Fixed &a, Fixed &b)
 {
-    if (a < b)
+        if (a < b)
         return b;
     else
         return a;
 }
 static const Fixed& max(const Fixed &a, const Fixed &b)
 {
-    if (&a < &b)
+        if (a < b)
         return b;
     else
         return a;
