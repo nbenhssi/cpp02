@@ -1,57 +1,63 @@
 #include "Fixed.hpp"
 
-Fixed::Fixed():fixed_point(0)
+Fixed::Fixed() : fixed_point(0)
 {
-    std::cout<< "Default constructor called" << std::endl;
+    std::cout << "Default constructor called" << std::endl;
 }
 
-Fixed::Fixed(Fixed &fixed)
+Fixed::Fixed(const int point)
 {
-    this->fixed_point = fixed.fixed_point;
-    std::cout<< "Copy constructor called" << std::endl;
+    std::cout << "Int constructor called" << std::endl;
+    fixed_point = point << fractional_bits;
+}
+
+Fixed::Fixed(const float point)
+{
+    std::cout << "Float constructor called" << std::endl;
+    fixed_point = roundf(point * (1 << fractional_bits));
+}
+
+Fixed::Fixed(const Fixed &fixed)
+{
+    std::cout << "Copy constructor called" << std::endl;
+    fixed_point = fixed.fixed_point;
+}
+
+Fixed& Fixed::operator=(const Fixed &fixed)
+{
+    std::cout << "Copy assignment operator called" << std::endl;
+    if (this != &fixed)
+        fixed_point = fixed.fixed_point;
+    return *this;
 }
 
 Fixed::~Fixed()
 {
-    std::cout<< "Destructor called" << std::endl;    
-}
-
-Fixed Fixed::operator=(Fixed &fixed)
-{
-    this->fixed_point = fixed.fixed_point;
-    std::cout<< "Copy assignment operator called" << std::endl;
+    std::cout << "Destructor called" << std::endl;
 }
 
 int Fixed::getRawBits(void) const
 {
-    std::cout<< "getRawBits member function called" << std::endl;
-    return this->fixed_point;
+    return fixed_point;
 }
 
 void Fixed::setRawBits(int const raw)
 {
-    this->fixed_point = raw;
+    fixed_point = raw;
 }
 
-//
-Fixed::Fixed(const int point)
+float Fixed::toFloat(void) const
 {
-    this->fixed_point = point * this->fractional_bits;
+    return (float)fixed_point / (1 << fractional_bits);
 }
 
-Fixed::Fixed(int fixed_point)
+int Fixed::toInt(void) const
 {
-    fixed_point = this->fixed_point / this->fractional_bits;
+    return fixed_point >> fractional_bits;
 }
 
-float Fixed::toFloat( void ) const
+std::ostream& operator<<(std::ostream &out, const Fixed &fixed)
 {
-
+    out << fixed.toFloat();
+    return out;
 }
-
-int Fixed::toInt( void ) const
-{
-
-}
-
-//op
