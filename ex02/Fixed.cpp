@@ -155,7 +155,10 @@ Fixed& Fixed::min(Fixed &a, Fixed &b)
 
 const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
 {
-    return (a < b) ? a : b;
+    if (a <b)
+        return a;
+    else
+        return b;    
 }
 
 Fixed& Fixed::max(Fixed &a, Fixed &b)

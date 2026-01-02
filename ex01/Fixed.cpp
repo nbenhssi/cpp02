@@ -11,7 +11,6 @@ Fixed::Fixed(const int point)
     fixed_point = point << fractional_bits;
 }
 
-
 Fixed::Fixed(const float point)
 {
     std::cout << "Float constructor called" << std::endl;
