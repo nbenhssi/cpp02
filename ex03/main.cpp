@@ -1,23 +1,27 @@
 #include "Fixed.hpp"
+#include "Point.hpp"
 
 int main( void )
 {
+	Point a(0, 0);
+	Point b(10, 0);
+	Point c(0, 10);
 
-    Fixed a;
-    Fixed const b(10);
-    Fixed const c( 42.42f );
-    Fixed const d(b);
+	Point inside(2, 2);
+	Point outside(10, 10);
+	Point edge(0, 0);
 
-    a = Fixed(1234.4321f);
+	std::cout << "Inside (2,2): "
+			  << (bsp(a, b, c, inside) ? "TRUE" : "FALSE")
+			  << std::endl;
 
-    std::cout << "a is " << a << std::endl;
-    std::cout << "b is " << b << std::endl;
-    std::cout << "c is " << c << std::endl;
-    std::cout << "d is " << d << std::endl;
-    std::cout << "a is " << a.toInt() << " as integer" << std::endl;
-    std::cout << "b is " << b.toInt() << " as integer" << std::endl;
-    std::cout << "c is " << c.toInt() << " as integer" << std::endl;
-    std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+	std::cout << "Outside (10,10): "
+			  << (bsp(a, b, c, outside) ? "TRUE" : "FALSE")
+			  << std::endl;
 
-    return 0;
+	std::cout << "On vertex (0,0): "
+			  << (bsp(a, b, c, edge) ? "TRUE" : "FALSE")
+			  << std::endl;
+
+	return 0;
 }

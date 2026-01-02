@@ -13,8 +13,6 @@ Point& Point::operator=(Point const &point)
     return *this;
 }
 
-Point::~Point() {}
-
 Fixed Point::getX() const
 {
     return this->x;
