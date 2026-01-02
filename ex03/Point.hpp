@@ -1,5 +1,5 @@
-#ifndef POINT_H
-#define POINT_H
+#ifndef POINT_HPP
+#define POINT_HPP
 
 #include "Fixed.hpp"
 
@@ -10,13 +10,15 @@ class Point
         const Fixed y;
     public:
         Point();
-        Point(int const i, int const y);
-        Point(Point &point);
-        Point& operator=(Point &point) = delete;
-        bool bsp( Point const a, Point const b, Point const c, Point const point);
+        Point(float const a, float const b);
+        Point(Point const &point);
+        Point& operator=(Point const &point);
         ~Point();
+        
         Fixed getX() const;
         Fixed getY() const;
 };
+
+bool bsp(Point const a, Point const b, Point const c, Point const point);
 
 #endif
