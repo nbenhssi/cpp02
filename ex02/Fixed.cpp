@@ -1,4 +1,5 @@
 #include "Fixed.hpp"
+const int Fixed::fractional_bits = 8;
 
 Fixed::Fixed() : fixed_point(0)
 {
@@ -55,7 +56,6 @@ int Fixed::toInt(void) const
 {
     return fixed_point >> fractional_bits;
 }
-
 std::ostream& operator<<(std::ostream &out, const Fixed &fixed)
 {
     out << fixed.toFloat();
